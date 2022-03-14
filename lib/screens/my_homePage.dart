@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final state = Provider.of<ThemeState>(context);
 
     return DefaultTabController(
-      length: 5,
+      length: 4,
       child: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -69,9 +69,34 @@ class _MyHomePageState extends State<MyHomePage> {
               const Tab(text: 'Top rated', icon: Icon(Icons.important_devices)),
               const Tab(text: 'Now Playing', icon: Icon(Icons.airplay_sharp)),
               const Tab(text: 'Popular', icon: Icon(Icons.movie_filter)),
-              const Tab(text: 'Search', icon: Icon(Icons.search)),
+              // const Tab(text: 'Search', icon: Icon(Icons.search)),
             ],
           ),
+          actions: [
+            ElevatedButton.icon(
+              onPressed: () async {
+                final Movie? result = await showSearch<Movie?>(
+                    context: context,
+                    delegate: MovieSearch(
+                        themeData: state.themeData, genres: _genres));
+                if (result != null) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MovieDetailPage(
+                              movie: result,
+                              themeData: state.themeData,
+                              genres: _genres,
+                              heroId: '${result.id}search')));
+                }
+              },
+              icon: Icon(Icons.search),
+              label: Text("Search"),
+              style: ElevatedButton.styleFrom(
+                textStyle: TextStyle(fontSize: 15),
+              ),
+            ),
+          ],
         ),
         drawer: Theme(
           data: Theme.of(context).copyWith(
@@ -107,26 +132,26 @@ class _MyHomePageState extends State<MyHomePage> {
             api: Endpoints.popularMoviesUrl(1),
             genres: _genres,
           ),
-          IconButton(
-            color: state.themeData.colorScheme.secondary,
-            icon: Icon(Icons.search),
-            onPressed: () async {
-              final Movie? result = await showSearch<Movie?>(
-                  context: context,
-                  delegate:
-                      MovieSearch(themeData: state.themeData, genres: _genres));
-              if (result != null) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MovieDetailPage(
-                            movie: result,
-                            themeData: state.themeData,
-                            genres: _genres,
-                            heroId: '${result.id}search')));
-              }
-            },
-          ),
+          // IconButton(
+          //   color: state.themeData.colorScheme.secondary,
+          //   icon: Icon(Icons.search),
+          //   onPressed: () async {
+          //     final Movie? result = await showSearch<Movie?>(
+          //         context: context,
+          //         delegate:
+          //             MovieSearch(themeData: state.themeData, genres: _genres));
+          //     if (result != null) {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => MovieDetailPage(
+          //                   movie: result,
+          //                   themeData: state.themeData,
+          //                   genres: _genres,
+          //                   heroId: '${result.id}search')));
+          //     }
+          //   },
+          // ),
         ]),
       ),
     );

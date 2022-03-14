@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const String TMDB_API_BASE_URL = "https://api.themoviedb.org/3";
-const String TMDB_API_KEY = "";
+const String TMDB_API_KEY = "b02c9aff0d53503d80f2e8d8fc474ff7";
 const String TMDB_BASE_IMAGE_URL = "https://image.tmdb.org/t/p/";
 
 const kMessageTextFieldDecoration = InputDecoration(
