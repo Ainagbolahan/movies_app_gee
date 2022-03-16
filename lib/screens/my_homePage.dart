@@ -57,7 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
       length: 4,
       child: Scaffold(
         key: _scaffoldKey,
+        backgroundColor: state.themeData.primaryColor,
         appBar: AppBar(
+          backgroundColor: state.themeData.primaryColor,
           iconTheme:
               IconThemeData(color: state.themeData.colorScheme.secondary),
           title: Text("Movies", style: state.themeData.textTheme.bodyText1),
@@ -65,10 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
             indicatorSize: TabBarIndicatorSize.tab,
             labelStyle: state.themeData.textTheme.bodyText1,
             tabs: const <Tab>[
-              const Tab(text: 'Discover', icon: Icon(Icons.movie_rounded)),
-              const Tab(text: 'Top rated', icon: Icon(Icons.important_devices)),
-              const Tab(text: 'Now Playing', icon: Icon(Icons.airplay_sharp)),
-              const Tab(text: 'Popular', icon: Icon(Icons.movie_filter)),
+              Tab(text: 'Discover', icon: Icon(Icons.movie_rounded)),
+              Tab(text: 'Top rated', icon: Icon(Icons.important_devices)),
+              Tab(text: 'Now Playing', icon: Icon(Icons.airplay_sharp)),
+              Tab(text: 'Popular', icon: Icon(Icons.movie_filter)),
               // const Tab(text: 'Search', icon: Icon(Icons.search)),
             ],
           ),
@@ -91,9 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
               },
               icon: Icon(Icons.search),
-              label: Text("Search"),
+              label: Text(
+                "Search",
+                style: state.themeData.textTheme.bodyText1,
+              ),
               style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(fontSize: 15),
+                primary: state.themeData.primaryColor,
+                textStyle: TextStyle(fontSize: 10),
               ),
             ),
           ],

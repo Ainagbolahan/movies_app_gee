@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:movies_app_gee/models/genres.dart';
 import 'package:movies_app_gee/models/movie.dart';
 import 'package:movies_app_gee/widgets/search_movie_widget.dart';
+import 'package:provider/provider.dart';
+
+import '../theme/theme_state.dart';
 
 class MovieSearch extends SearchDelegate<Movie?> {
   final ThemeData? themeData;
@@ -10,7 +13,10 @@ class MovieSearch extends SearchDelegate<Movie?> {
 
   @override
   ThemeData appBarTheme(BuildContext context) {
+    final state = Provider.of<ThemeState>(context);
     final ThemeData theme = themeData!.copyWith(
+        scaffoldBackgroundColor: state.themeData.primaryColor,
+        backgroundColor: state.themeData.primaryColor,
         hintColor: themeData!.colorScheme.secondary,
         primaryColor: themeData!.primaryColor,
         textTheme: TextTheme(

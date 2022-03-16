@@ -5,7 +5,7 @@ final ThemeData kLightTheme = _buildLightTheme();
 ThemeData _buildLightTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-    primaryColor: Colors.white,
+    primaryColor: Colors.white38,
     canvasColor: Colors.transparent,
     primaryIconTheme: IconThemeData(color: Colors.black),
     textTheme: TextTheme(
@@ -22,7 +22,7 @@ ThemeData _buildLightTheme() {
       bodyText1: TextStyle(
           fontFamily: 'Sans',
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: Colors.black,
           fontSize: 16),
       caption: TextStyle(
           fontFamily: 'Sans',

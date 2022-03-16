@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../authentication/authentication.dart';
 import '../constants/api_constants.dart';
+import '../theme/theme_state.dart';
 import '../widgets/rounded_button.dart';
 import 'my_homePage.dart';
 
@@ -19,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final state = Provider.of<ThemeState>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -119,6 +122,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 title: Text(
                   'Log In',
+                ),
+              ),
+              ElevatedButton.icon(
+                onPressed: () async {
+                  setState(() {
+                    Navigator.pushNamed(context, MyHomePage.id);
+                  });
+                },
+                icon: Icon(Icons.navigate_next),
+                label: Text(
+                  "Skip Signin",
+                  style: state.themeData.textTheme.bodyText1,
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: state.themeData.primaryColor,
+                  textStyle: TextStyle(fontSize: 10),
                 ),
               ),
             ],
