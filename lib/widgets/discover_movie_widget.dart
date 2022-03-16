@@ -53,6 +53,7 @@ class _DiscoverMoviesState extends State<DiscoverMovies> {
                     child: CircularProgressIndicator(),
                   )
                 : CarouselSlider.builder(
+                    itemCount: moviesList!.length,
                     options: CarouselOptions(
                       disableCenter: true,
                       viewportFraction: 0.8,
@@ -91,7 +92,6 @@ class _DiscoverMoviesState extends State<DiscoverMovies> {
                         ),
                       );
                     },
-                    itemCount: moviesList!.length,
                   ),
           ),
         ),
